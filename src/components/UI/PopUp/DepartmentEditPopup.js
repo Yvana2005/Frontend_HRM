@@ -52,7 +52,7 @@ const DepartmentEditPopup = ({ data }) => {
 				<BtnEditSvg size={30} />
 			</button>
 			<Modal
-				title='Basic Modal'
+				title='Modifier'
 				open={isModalOpen}
 				onOk={handleOk}
 				onCancel={handleCancel}>
@@ -73,7 +73,7 @@ const DepartmentEditPopup = ({ data }) => {
 					<div>
 						<Form.Item
 							style={{ marginBottom: "20px" }}
-							label='Name'
+							label='Nom'
 							name='name'
 							rules={[
 								{
@@ -97,7 +97,7 @@ const DepartmentEditPopup = ({ data }) => {
 								htmlType='submit'
 								block
 								loading={loader}>
-								Ajouter un nouveau département
+								Mettre à jour
 							</Button>
 						</Form.Item>
 					</div>

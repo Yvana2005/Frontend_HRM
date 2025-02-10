@@ -46,14 +46,14 @@ function CustomTable({ list, total }) {
     },
     {
       id: 4,
-      title: "Partir de",
+      title: "Partir du",
       dataIndex: "leaveFrom",
       key: "leaveFrom",
       render: (leaveFrom) => dayjs(leaveFrom).format("DD-MM-YYYY")
     },
     {
       id: 5,
-      title: "Laisser à",
+      title: "Jusqu'au",
       dataIndex: "leaveTo",
       key: "leaveTo",
       render: (leaveTo) => dayjs(leaveTo).format("DD-MM-YYYY")
@@ -97,8 +97,10 @@ function CustomTable({ list, total }) {
           text="View"
           icon={<BtnViewSvg />}
         />
+        
       )
     }
+
   ];
   //make a onChange function
   const onChange = (value) => {

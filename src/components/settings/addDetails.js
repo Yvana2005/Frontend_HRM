@@ -98,7 +98,7 @@ const AddDetails = () => {
 									<Form.Item
 										style={{ marginBottom: "10px" }}
 										fields={[{ name: "Company Name" }]}
-										label='Company Name'
+										label='Nom de la Companie'
 										name='company_name'
 										rules={[
 											{
@@ -111,7 +111,7 @@ const AddDetails = () => {
 									<Form.Item
 										style={{ marginBottom: "10px" }}
 										fields={[{ name: "Tagline" }]}
-										label='Tagline'
+										label='Slogan'
 										name='tag_line'
 										rules={[
 											{
@@ -124,7 +124,7 @@ const AddDetails = () => {
 
 									<Form.Item
 										style={{ marginBottom: "10px" }}
-										label='Address'
+										label='Adresse'
 										name='address'
 										rules={[
 											{
@@ -137,7 +137,7 @@ const AddDetails = () => {
 
 									<Form.Item
 										style={{ marginBottom: "10px" }}
-										label='Phone Number'
+										label='Numéro'
 										name='phone'
 										rules={[
 											{
@@ -150,7 +150,7 @@ const AddDetails = () => {
 
 									<Form.Item
 										style={{ marginBottom: "10px" }}
-										label='Email Address'
+										label='Email'
 										name='email'
 										rules={[
 											{
@@ -163,7 +163,7 @@ const AddDetails = () => {
 
 									<Form.Item
 										style={{ marginBottom: "10px" }}
-										label='Website'
+										label='Site Web'
 										name='website'
 										rules={[
 											{
@@ -176,7 +176,7 @@ const AddDetails = () => {
 
 									<Form.Item
 										style={{ marginBottom: "10px" }}
-										label='Footer'
+										label='Pied de Page'
 										name='footer'
 										rules={[
 											{
@@ -197,7 +197,7 @@ const AddDetails = () => {
 											size='large'
 											loading={loader}
 											onClick={onClickLoading}>
-											Update Details
+											Mettre à jour
 										</Button>
 									</Form.Item>
 								</Form>

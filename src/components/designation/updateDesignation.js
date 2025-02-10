@@ -107,7 +107,7 @@ function UpdateDesignation() {
 								<Form.Item
 									style={{ marginBottom: "10px" }}
 									fields={[{ name: "Name" }]}
-									label='Name'
+									label='Nom'
 									name='name'
 									rules={[
 										{
@@ -125,7 +125,7 @@ function UpdateDesignation() {
 										span: 16,
 									}}>
 									<Button block type='primary' htmlType='submit' shape='round'>
-									Mettez à jour maintenant
+									Mettez à jour
 									</Button>
 								</Form.Item>
 							</Form>

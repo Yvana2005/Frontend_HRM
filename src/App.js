@@ -48,6 +48,7 @@ import Leave from "./components/leave/Leave";
 import GetAllLeaves from "./components/leave/GetAllLeaves";
 import DetailLeave from "./components/leave/DetailLeave";
 import UserLeave from "./components/leave/UserLeave";
+import UpdateLeave from "./components/leave/UpdateLeave";
 
 import Account from "./components/account/account";
 import BalanceSheet from "./components/account/balanceSheet";
@@ -273,6 +274,14 @@ function App() {
 								<UserPrivateRoute permission={"readSingle-leaveApplication"} />
 							}>
 							<Route path='/admin/leave/user/:id' element={<UserLeave />} />
+						</Route>
+						<Route
+							element={<UserPrivateRoute permission={"update-leaveApplication"} />
+							}>
+							<Route
+								path='/admin/leave/:id/update'
+								element={<UpdateLeave />}
+							/>
 						</Route>
 						{/* === === === Attendance Routes === === === */}
 						<Route

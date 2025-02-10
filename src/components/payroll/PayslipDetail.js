@@ -56,18 +56,18 @@ const PrintToPdf = forwardRef(({ data, invoiceData }, ref) => {
 							<p>
 								<TitleText>Salaire:</TitleText> {data.salary} Fcfa
 							</p>
-							<TitleText>Journée de travail: </TitleText> {data.workDay}
+							{/* <TitleText>Journée de travail: </TitleText> {data.workDay}
 							<p>
 								<TitleText>Heure de travail: </TitleText> {data.workingHour} Hours
-							</p>
+							</p> */}
 						</Col>
 						<Col span={6}>
 							<p>
-								<TitleText>Créé à:</TitleText>{" "}
+								<TitleText>Paiement de:</TitleText>{" "}
 								{dayjs(data.salaryMonth, "M").format("MMMM")}, {data.salaryYear}
 							</p>
 							<p>
-								<TitleText>Créé à:</TitleText>{" "}
+								<TitleText>Créé le:</TitleText>{" "}
 								{dayjs(data.createdAt).format("DD/MM/YYYY")}
 							</p>
 							<p>

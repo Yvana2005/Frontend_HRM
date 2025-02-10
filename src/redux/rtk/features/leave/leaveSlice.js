@@ -42,6 +42,32 @@ export const addLeaveApplication = createAsyncThunk(
 	}
 );
 
+// DELETE_leave
+export const deleteLeaveApplication = createAsyncThunk(
+	"leave/deleteLeaveApplication",
+	async (id) => {
+		try {
+			const resp = await axios({
+				method: "delete",
+				headers: {
+					Accept: "application/json",
+					"Content-Type": "application/json;charset=UTF-8",
+				},
+				url: `leave-application/${id}`,
+			});
+
+			toast.success("Leave Deleted");
+			return {
+				data: resp.data.id,
+				message: "success",
+			};
+		} catch (error) {
+			toast.error("Error in approving try again");
+			console.log(error.message);
+		}
+	}
+);
+
 // Approve_LEAVE
 export const reviewLeaveApplication = createAsyncThunk(
 	"leave/reviewLeaveApplication",

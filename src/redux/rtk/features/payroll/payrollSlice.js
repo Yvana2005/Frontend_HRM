@@ -135,7 +135,7 @@ const payrollSlice = createSlice({
 			if (typeof item === "object") {
 				item[key] = value;
 				item.totalPayable =
-					item.salaryPayable + item.bonus - (item.deduction || 0);
+					item.salaryPayable + (item.bonus || 0) - (item.deduction || 0);
 			}
 		},
 	},

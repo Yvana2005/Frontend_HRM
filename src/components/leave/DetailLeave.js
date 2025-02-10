@@ -1,24 +1,40 @@
-import { Card } from "antd";
+import { Button, Card, Popover } from "antd";
+import { DeleteOutlined, EditOutlined } from "@ant-design/icons";
 import Loader from "../loader/loader";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import {
 	clearLeaveApplication,
+	deleteLeaveApplication,
 	loadSingelLeaveApplication,
 } from "../../redux/rtk/features/leave/leaveSlice";
 import tw from "tailwind-styled-components";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams, useNavigate } from "react-router-dom";
 import PageTitle from "../page-header/PageHeader";
 import dayjs from "dayjs";
 import BtnViewSvg from "../UI/Button/btnViewSvg";
 import ViewBtn from "../Buttons/ViewBtn";
 import ReviewLeavePopup from "../UI/PopUp/ReviewLeavePopup";
+// import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import UserPrivateComponent from "../PrivateRoutes/UserPrivateComponent";
 
 const DetailLeave = () => {
 	const { id } = useParams("id");
+	let navigate = useNavigate();
 	const leave = useSelector((state) => state.leave.leave);
 	const dispatch = useDispatch();
+
+	//Delete Supplier
+	const onDelete = async () => {
+		try {
+		  const resp = await dispatch(deleteLeaveApplication(id));
+		  if (resp.payload.message === "success") {
+			return navigate("/admin/leave");
+		  }
+		} catch (error) {
+		  console.log(error.message);
+		}
+	  };
 
 	useEffect(() => {
 		dispatch(loadSingelLeaveApplication(id));
@@ -147,6 +163,20 @@ const DetailLeave = () => {
 											"Pas de pièces Jointes"
 										)}
 									</TextInside>
+								</ListItem>
+								<ListItem>
+								Supprimer : {" "}
+								<UserPrivateComponent permission={"delete-leaveApplication"}>
+											<Popover
+												>
+												<Button
+												    onClick={onDelete}
+													type='danger'
+													DetailLeave
+													shape='round'
+													icon={<DeleteOutlined />}></Button>
+											</Popover>
+										</UserPrivateComponent>
 								</ListItem>
 							</ul>
 						</div>

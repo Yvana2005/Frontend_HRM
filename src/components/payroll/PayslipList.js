@@ -61,7 +61,7 @@ function CustomTable({ list, loading, month, year, paymentStatus }) {
       // render: ({ salaryMonth }) => `${dayjs(salaryMonth, "M").format("MMM")}`,
     },
     {
-      title: "Annee",
+      title: "Année",
       key: "year",
       render: ({ salaryYear }) => `${salaryYear}`
     },
@@ -79,13 +79,13 @@ function CustomTable({ list, loading, month, year, paymentStatus }) {
     },
 
     {
-      title: "deduction",
+      title: "déduction",
       dataIndex: "deduction",
       key: "deduction"
     },
 
     {
-      title: "Commentaire de deduction",
+      title: "Commentaire de déduction",
       dataIndex: "deductionComment",
       key: "deductionComment"
     },

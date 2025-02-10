@@ -6,6 +6,7 @@ import checkTokenExp from "../../../utils/checkTokenExp";
 import PublicHolidayBar from "./PublicHolidayBar";
 import DemoLine from "./Demoline";
 import AnnouncementBar from "./AnnouncementBar";
+import UserPrivateComponent from "../../PrivateRoutes/UserPrivateComponent";
 import AttendancePopup from "../..//UI/PopUp/AttendancePopup";
 
 const Dashboard = () => {
@@ -21,17 +22,18 @@ const Dashboard = () => {
 	checkTokenExp(accessToken);
 	return (
 		<>
+		   <UserPrivateComponent permission={"readAll-announcement"}>
 			<div>
 				<div>
 				<div>
-  <Row>
-    <Col span={12} offset={0} className="mb-4"> {/* span réduit pour le déplacer */}
-      <div className='text-start mr-4'> {/* text-align à gauche */}
-        <AttendancePopup />
-      </div>
-    </Col>
-  </Row>
-</div>
+              <Row>
+                   <Col span={12} offset={0} className="mb-4"> {/* span réduit pour le déplacer */}
+                           <div className='text-start mr-4'> {/* text-align à gauche */}
+                             <AttendancePopup />
+                           </div>
+                   </Col>
+               </Row>
+                 </div>
 					<div className='mb-3'>
 						<Row>
 							<Col span={24}>
@@ -64,6 +66,7 @@ const Dashboard = () => {
 					</div> */}
 				</div>
 			</div>
+		</UserPrivateComponent>
 		</>
 	);
 };

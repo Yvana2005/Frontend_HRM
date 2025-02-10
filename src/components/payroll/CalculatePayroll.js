@@ -328,10 +328,10 @@ const CalculatePayroll = () => {
       bonus: i.bonus,
       bonusComment: i.bonusComment,
       deduction: i.deduction,
-      deductionComment: i.deductionComment,
-      totalPayable: i.totalPayable,
+      deductionComment: i.deductionComment, 
       workingHour: i.workingHour,
-      salaryPayable: i.salaryPayable
+      salaryPayable: i.salaryPayable,
+      totalPayable: i.totalPayable
     }));
 
     try {
