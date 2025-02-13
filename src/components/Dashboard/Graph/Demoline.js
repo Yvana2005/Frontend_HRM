@@ -44,6 +44,13 @@ const DemoLine = () => {
 	
 		setStartdate(newStartdate);
 		setEnddate(newEnddate);
+
+		  dispatch(
+			loadDashboardData({
+			  startdate: newStartdate,
+			  enddate: newEnddate
+			})
+		  );
 	
 	};
 

@@ -59,6 +59,7 @@ code {
 .ant-table .ant-table-container .ant-table-content table thead.ant-table-thead {
 	background-color: rgb(44, 44, 44) !important;
 	color: antiquewhite !important;
+	/* overflow: hidden !important; */
 }
 
 .ant-table-thead > tr > th {

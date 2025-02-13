@@ -184,7 +184,7 @@ const UserLeave = (props) => {
 	// }, [id]);
   // console.log(list);
   return (
-    <UserPrivateComponent permission='readSingle-leaveApplication'>
+    <UserPrivateComponent permission='create-leaveApplication'>
       <div className="card">
         <div className="card-body">
         {/* {!loading ? <CustomTable list={list?.singleleave} loading={loading} /> : <Loader />} */}

@@ -15,15 +15,22 @@ import {
 } from "../../redux/rtk/features/attendance/attendanceSlice";
 import BtnSearchSvg from "../UI/Button/btnSearchSvg";
 import { VioletLinkBtn } from "../UI/AllLinkBtn";
+import AttendancePrint from "./AttendancePrint";
+import moment from "moment";
+
 
 //Date fucntinalities
-let startdate = dayjs().startOf("month");
-let enddate = dayjs().endOf("month");
+// let startdate = dayjs().startOf("month");
+// let enddate = dayjs().endOf("month");
+
 
 function CustomTable({ list, total, status, setStatus, loading }) {
+
 	const [columnsToShow, setColumnsToShow] = useState([]);
 
 	const dispatch = useDispatch();
+	const [startdate, setStartdate] = useState(moment().startOf("month"));
+    const [enddate, setEnddate] = useState(moment().endOf("month"));
 
 	const onChange = (value) => {
 		setStatus(value);
@@ -56,15 +63,15 @@ function CustomTable({ list, total, status, setStatus, loading }) {
 			title:"Heure d'arrivée",
 			dataIndex: "inTime",
 			key: "inTime",
-			render: (inTime) => dayjs(inTime).format("DD-MM-YYYY, h:mm A") || "NONE",
+			render: (inTime) => dayjs(inTime).format("DD-MM-YYYY, HH:mm") || "NONE",
 		},
 		{
 			id: 3,
 			title: "Heure de depart",
-			dataIndex: `outTime`,
+			dataIndex: "outTime",
 			key: "outTime",
 			render: (outTime) =>
-				dayjs(outTime).format("DD-MM-YYYY, h:mm A") || "NONE",
+				dayjs(outTime).format("DD-MM-YYYY, HH:mm") || "NONE",
 		},
 		{
 			id: 4,
@@ -122,19 +129,7 @@ function CustomTable({ list, total, status, setStatus, loading }) {
 			),
 		},
 
-		// {
-		// 	id: 8,
-		// 	title: "Action",
-		// 	dataIndex: "id",
-		// 	key: "id",
-		// 	render: (id) => (
-		// 		<AttendBtn
-		// 			path={`/admin/attendance/${id}`}
-		// 			text='View'
-		// 			icon={<BtnViewSvg />}
-		// 		/>
-		// 	),
-		// },
+		
 	];
 
 	useEffect(() => {
@@ -152,6 +147,11 @@ function CustomTable({ list, total, status, setStatus, loading }) {
 		supplier: i?.supplier?.name,
 	}));
 
+	const logs = list?.map((i) => ({
+		...i,
+		supplier: i?.supplier?.name,
+	}));
+
 	return (
 		<div className='mt-5'>
 			{list && (
@@ -162,32 +162,7 @@ function CustomTable({ list, total, status, setStatus, loading }) {
 						</CSVLink>
 					</CsvLinkBtn>
 
-					{/*<div>
-						<Segmented
-							className='text-center rounded text-red-500 mt-0.5'
-							size='middle'
-							options={[
-								{
-									label: (
-										<span>
-											<i className='bi bi-person-lines-fill'></i> Active
-										</span>
-									),
-									value: "true",
-								},
-								{
-									label: (
-										<span>
-											<i className='bi bi-person-dash-fill'></i> Inactive
-										</span>
-									),
-									value: "false",
-								},
-							]}
-							value={status}
-							onChange={onChange}
-						/>
-            </div> */}
+					
 				</div>
 			)}
 
@@ -198,10 +173,12 @@ function CustomTable({ list, total, status, setStatus, loading }) {
 						columns={columns}
 						columnsToShowHandler={columnsToShowHandler}
 					/>
+					<AttendancePrint data={logs} />
 				</div>
 			)}
 
 			<Table
+			    
 				scroll={{ x: true }}
 				loading={loading}
 				pagination={{
@@ -224,10 +201,16 @@ function CustomTable({ list, total, status, setStatus, loading }) {
 }
 
 const GetAllAttendance = (props) => {
-	const dispatch = useDispatch();
 
+	
+	const dispatch = useDispatch();
+    const [count, setCount] = useState(10);
 	const { list, loading } = useSelector((state) => state.attendance);
+	
+	
 	const [status, setStatus] = useState("true");
+	const [startdate, setStartdate] = useState(moment().startOf("month"));
+    const [enddate, setEnddate] = useState(moment().endOf("month"));
 
 	// const [total, setTotal] = useState(0);
 
@@ -238,29 +221,40 @@ const GetAllAttendance = (props) => {
 			loadAllAttendancePaginated({
 				page: 1,
 				limit: 30,
-				startdate,
-				enddate,
+				startdate: startdate,
+				enddate: enddate
 			})
 		);
-	}, []);
+	}, [dispatch, startdate, enddate]);
 
 	const onCalendarChange = (dates) => {
-		startdate = (dates?.[0]).format("DD-MM-YYYY");
-		enddate = (dates?.[1]).format("DD-MM-YYYY");
+		if (dates && dates[0] && dates[1]) {
+			const newStartDate = dates[0].format("YYYY-MM-DDTHH:mm:ss");
+			const newEndDate = dates[1].format("YYYY-MM-DDTHH:mm:ss");
+			setStartdate(newStartDate);
+			setEnddate(newEndDate);
+		  } else {
+			console.error("Les dates sélectionnées sont nulles ou non définies.");
+		  }
 	};
 
 	const onClickSearch = () => {
 		// dispatch(clearAttendanceList());
 
-		dispatch(
+		if (!startdate || !enddate) {
+			console.error("Les dates ne sont pas définies correctement !");
+			return;
+		  }
+		  dispatch(
 			loadAllAttendancePaginated({
-				page: 1,
-				limit: 30,
-				startdate,
-				enddate,
+			  page: 1,
+			  limit: 30,
+			  startdate: startdate.format("YYYY-MM-DD"),
+			  enddate: enddate.format("YYYY-MM-DD"),
 			})
-		);
+		  );
 	};
+	
 
 	// TODO : Add Search functionality here
 
@@ -279,7 +273,11 @@ const GetAllAttendance = (props) => {
 							<RangePicker
 								onCalendarChange={onCalendarChange}
 								defaultValue={[startdate, enddate]}
-								format={"DD-MM-YYYY"}
+								// defaultValue={[
+								// 	moment().startOf("month"),
+								// 	moment().endOf("month")
+								//   ]}
+								// format={"DD-MM-YYYY"}
 								className='range-picker mr-3'
 								style={{ maxWidth: "400px" }}
 							/>
@@ -288,7 +286,12 @@ const GetAllAttendance = (props) => {
 									<BtnSearchSvg size={25} title={"SEARCH"} loading={loading} />
 								</button>
 							</VioletLinkBtn>
+							
 						</div>
+						{/* <div className="text-end">
+                            
+                        </div> */}
+					
 					</div>
 					{/*TODO : ADD TOTAL AMOUNT HERE */}
 					<CustomTable

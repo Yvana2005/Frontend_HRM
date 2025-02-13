@@ -23,6 +23,7 @@ import {
   deleteStaff,
   loadSingleStaff
 } from "../../redux/rtk/features/user/userSlice";
+
 import Loader from "../loader/loader";
 import PageTitle from "../page-header/PageHeader";
 import BtnDeleteSvg from "../UI/Button/btnDeleteSvg";
@@ -57,12 +58,17 @@ const DetailStaff = () => {
   console.log(designation, "designation");
 
   //Delete Supplier
-  const onDelete = () => {
+  const onDelete = async () => {
+    
     try {
-      dispatch(deleteStaff(id));
-
+      const confirmDelete = window.confirm(
+        `Voulez-vous vraiment supprimer l'EMPLOYÉ : ${user.firstName} ?`
+      );
+      if (!confirmDelete) return;
+      await dispatch(deleteStaff(id));
+      
       setVisible(false);
-      toast.warning(`User Name : ${user.username} is removed `);
+      toast.warning(`L'EMPLOYÉ: ${user.firstName} ainsi que sa fiche de paie ont été supprimés. `);
       return navigate("/admin/hr/staffs");
     } catch (error) {
       console.log(error.message);

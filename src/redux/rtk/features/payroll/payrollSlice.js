@@ -70,28 +70,28 @@ export const loadAllPayslipForPaymentMonthWise = createAsyncThunk(
 );
 
 // // DELETE_payroll
-// export const deletepayroll = createAsyncThunk(
-//   "payroll/deletepayroll",
-//   async (id) => {
-//     try {
-//       const resp = await axios({
-//         method: "patch",
-//         headers: {
-//           Accept: "application/json",
-//           "Content-Type": "application/json;charset=UTF-8",
-//         },
-//         url: `payroll/${id}`,
-//         data: {
-//           status: false,
-//         },
-//       });
+export const deletepayroll = createAsyncThunk(
+  "payroll/deletepayroll",
+  async (id) => {
+    try {
+      const resp = await axios({
+        method: "delete",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json;charset=UTF-8",
+        },
+        url: `payroll/${id}`,
+        data: {
+          status: false,
+        },
+      });
 
-//       return resp.data.id;
-//     } catch (error) {
-//       console.log(error.message);
-//     }
-//   }
-// );
+      return resp.data.id;
+    } catch (error) {
+      console.log(error.message);
+    }
+  }
+);
 
 // payroll_DETAILS
 export const loadSinglePayslip = createAsyncThunk(

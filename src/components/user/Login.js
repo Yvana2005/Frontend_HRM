@@ -34,15 +34,15 @@ const Login = () => {
         <Col span={24}>
           <Card bordered={false} className={styles.card}>
             <Title level={3} className="m-3 text-center">
-              BIENVENUE A SAI I LAMA
+              BIENVENUE À SAI I LAMA
             </Title>
             <div className={styles.logoContainer}>
               <img
                 src={logo}
                 alt="logo"
                 style={{
-                  width: "50%",
-                  height: "50%",
+                  width: "25%",
+                  height: "25%",
                   objectFit: "cover",
                 }}
               />

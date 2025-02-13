@@ -170,6 +170,7 @@ body {
 
 .ant-table {
 	color: var(--text) !important;
+	/* overflow: hidden !important; */
 }
 
 .ant-table-cell-row-hover {
