@@ -39,7 +39,7 @@ function CustomTable({ list, loading }) {
 			title: "heure d'arrivée",
 			dataIndex: "inTime",
 			key: "inTime",
-			render: (inTime) => dayjs(inTime).format("DD-MM-YYYY, h:mm A"),
+			render: (inTime) => dayjs(inTime).format("DD-MM-YYYY, HH:mm"),
 		},
 
 		{
@@ -47,7 +47,7 @@ function CustomTable({ list, loading }) {
 			title: "Heure de depart",
 			dataIndex: "outTime",
 			key: "outTime",
-			render: (outTime) => dayjs(outTime).format("DD-MM-YYYY, h:mm A"),
+			render: (outTime) => dayjs(outTime).format("DD-MM-YYYY, HH:mm"),
 		},
 		{
 			id: 4,

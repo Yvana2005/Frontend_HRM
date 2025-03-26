@@ -96,14 +96,14 @@ const AttendancePrint = ({ data }) => {
 	return (
 		<div>
 			<UserPrivateComponent permission={"readAll-attendance"}>
-            <div>
-      <div className="hidden">
-        <PrintToPdf ref={componentRef} data={data} />
-      </div>
-      <Button type="primary" shape="round" onClick={handlePrint}>
-        Imprimer
-      </Button>
-    </div>
+        <div>
+           <div className="hidden">
+             <PrintToPdf ref={componentRef} data={data} />
+           </div>
+             <Button type="primary" shape="round" onClick={handlePrint}>
+               Imprimer
+             </Button>
+        </div>
 			</UserPrivateComponent>
 		</div>
 	);

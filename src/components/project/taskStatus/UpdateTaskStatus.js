@@ -80,7 +80,7 @@ const UpdateTaskStatus = () => {
 					xl={16}
 					className='column-design border rounded card-custom'>
 					<Title level={4} className='m-2 mt-5 mb-5 text-center'>
-					Colonne Mettre à jour l'état de la tâche
+					Mettre à jour l'état de la tâche
 					</Title>
 					{initialValues ? (
 						<Form
@@ -101,7 +101,7 @@ const UpdateTaskStatus = () => {
 							<div>
 								<Form.Item
 									style={{ marginBottom: "20px" }}
-									label='Task Status Name'
+									label='Etat de la tâche'
 									name='name'
 									rules={[
 										{

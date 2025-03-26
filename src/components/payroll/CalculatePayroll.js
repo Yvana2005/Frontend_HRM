@@ -16,6 +16,9 @@ import {
 } from "../../redux/rtk/features/payroll/payrollSlice";
 import { useNavigate } from "react-router-dom";
 import UserPrivateComponent from "../PrivateRoutes/UserPrivateComponent";
+import ViewBtn from "../Buttons/ViewBtn";
+import AttendBtn from "../Buttons/AttendBtn";
+
 
 function CustomTable({ list, loading }) {
   const [columnsToShow, setColumnsToShow] = useState([]);
@@ -163,17 +166,32 @@ function CustomTable({ list, loading }) {
       }
     },
 
-    {
-      title: "Nombre d'heures",
-      dataIndex: "workingHour",
-      key: "workingHour",
-      render: (workingHour) => `${workingHour?.toFixed(2)} hours`
-    },
+    // {
+    //   title: "Nombre d'heures",
+    //   dataIndex: "workingHour",
+    //   key: "workingHour",
+    //   render: (workingHour) => `${workingHour?.toFixed(2)} hours`
+    // },
 
     {
       title: "Total Payable",
       dataIndex: "totalPayable",
       key: "totalPayable"
+    },
+
+    {
+      //id: 7,
+      title: "Action",
+      dataIndex: "id",
+      key: "action",
+      render: (id) => (
+        <div className="flex justify-start">
+          <UserPrivateComponent permission={"readSingle-user"}>
+            <ViewBtn path={`/admin/hr/staffs/${id}/`} />
+          </UserPrivateComponent>
+          
+        </div>
+      )
     }
   ];
 

@@ -113,7 +113,7 @@ const Attendance = ({ drawer }) => {
 							<div>
 								<Form.Item
 									style={{ marginBottom: "10px" }}
-									label='Utilisateur'
+									label='Employé'
 									name='userId'
 									rules={[
 										{
@@ -121,10 +121,10 @@ const Attendance = ({ drawer }) => {
 											message: "Veuillez saisir votre utilisateur !",
 										},
 									]}>
-									<Select placeholder='Selectionnez un utilisateur'>
+									<Select placeholder="Selectionnez le nom d'un employé">
 										{users?.map((user) => (
 											<Select.Option key={user.id} value={user.id}>
-												{user.userName}
+												{user.lastName}
 											</Select.Option>
 										))}
 									</Select>

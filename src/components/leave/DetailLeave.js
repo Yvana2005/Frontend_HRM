@@ -34,7 +34,7 @@ const DetailLeave = () => {
 		} catch (error) {
 		  console.log(error.message);
 		}
-	  };
+	};
 
 	useEffect(() => {
 		dispatch(loadSingelLeaveApplication(id));
@@ -47,7 +47,7 @@ const DetailLeave = () => {
 	return (
 		<div>
 			<PageTitle title='Retour' />
-			<UserPrivateComponent permission={"create-leaveApplication"}>
+			{/* <UserPrivateComponent permission={"create-leaveApplication"}> */}
 				<Card className='mt-4'>
 					<div className='text-center mb-4'>
 						{" "}
@@ -129,7 +129,7 @@ const DetailLeave = () => {
 								jusqu'au :{" "}
 									<TextInside>
 										{leave.acceptLeaveTo
-											? dayjs(leave.acceptLeaveTo).format("DD-MM-YYY")
+											? dayjs(leave.acceptLeaveTo).format("DD-MM-YYYY")
 											: "EN REVUE"}
 									</TextInside>
 								</ListItem>
@@ -176,7 +176,7 @@ const DetailLeave = () => {
 													shape='round'
 													icon={<DeleteOutlined />}></Button>
 											</Popover>
-										</UserPrivateComponent>
+								</UserPrivateComponent>
 								</ListItem>
 							</ul>
 						</div>
@@ -196,7 +196,7 @@ const DetailLeave = () => {
 						)}
 					</UserPrivateComponent>
 				</Card>
-			</UserPrivateComponent>
+			{/* </UserPrivateComponent> */}
 		</div>
 	);
 

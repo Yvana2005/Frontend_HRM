@@ -20,7 +20,7 @@ const Register = () => {
       setLoader(true);
       if (resp === "success") {
         setLoader(false);
-        navigate("/admin/auth/login");
+        navigate("/hrm/admin/auth/login");
       } else {
         setLoader(false);
       }

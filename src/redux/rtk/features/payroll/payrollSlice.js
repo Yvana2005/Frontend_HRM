@@ -71,7 +71,7 @@ export const loadAllPayslipForPaymentMonthWise = createAsyncThunk(
 
 // // DELETE_payroll
 export const deletepayroll = createAsyncThunk(
-  "payroll/deletepayroll",
+  "payslip/deletePayslip",
   async (id) => {
     try {
       const resp = await axios({

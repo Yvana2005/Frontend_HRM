@@ -266,13 +266,14 @@ function App() {
 							element={
 								<UserPrivateRoute permission={"readAll-leaveApplication"} />
 							}>
-							<Route path='/admin/leave/:id' element={<DetailLeave />} />
+							
 							<Route path='/admin/leave' element={<GetAllLeaves />} />
 						</Route>
 						<Route
 							element={
 								<UserPrivateRoute permission={"readSingle-leaveApplication"} />
 							}>
+							<Route path='/admin/leave/:id' element={<DetailLeave />} />
 							<Route path='/admin/leave/user/:id' element={<UserLeave />} />
 						</Route>
 						<Route

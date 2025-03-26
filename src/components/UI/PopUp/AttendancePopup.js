@@ -10,9 +10,12 @@ import {
 // import { useParams } from "react-router-dom";
 // import { toast } from "react-toastify";
 import dayjs from "dayjs";
+import utc from "dayjs/plugin/utc";
 import getUserFromToken from "../../../utils/getUserFromToken";
 // publicIp
 const publicIp = require("react-public-ip");
+
+dayjs.extend(utc);
 
 const AttendancePopup = () => {
 	const isLogged = localStorage.getItem("isLogged");
@@ -55,6 +58,7 @@ const AttendancePopup = () => {
 		}
 	}, [clockIn]);
 
+
 	const clockInClick = async () => {
 		setLoader(true);
 		// get the current public ip address
@@ -62,15 +66,10 @@ const AttendancePopup = () => {
 		setIpv4(ipv4);
 		setLoader(false);
 		setIsModalVisible(true);
-		setTime(dayjs(new Date()).format("hh:mm A"));
+		setTime(dayjs(new Date()).format("HH:mm"));
 		setDate(dayjs(new Date()).format("DD-MM-YYYY"));
 	};
-	// useEffect(() => {
-	// 	fetch("/api/get-ip") // Assurez-vous que le backend est bien configuré pour gérer cette route
-	// 	  .then((res) => res.json())
-	// 	  .then((data) => setIp(data.ip))
-	// 	  .catch((err) => console.error("Erreur lors de la récupération de l'IP:", err));
-	// }, []);
+	
 
 	const handleCancel = () => {
 		setIsModalVisible(false);
@@ -131,9 +130,9 @@ const AttendancePopup = () => {
 					<Col span={12}>
 						<p className='text-base font-semibold text-color-2'>{`Heure ${inOut} date & heure:`}</p>
 						{/* show current time */}
-						<h1>Aujourd'hui {date}</h1>
+						<h1>Date: {date}</h1>
 						{/* show current date */}
-						<h1>Temps{time}</h1>
+						<h1>Heure {time}</h1>
 					</Col>
 					<Col
 						span={24}

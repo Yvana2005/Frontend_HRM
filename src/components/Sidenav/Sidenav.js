@@ -20,6 +20,7 @@ import {
 	WalletOutlined,
 	FileSyncOutlined,
 	FlagOutlined,
+	QuestionCircleOutlined
 } from "@ant-design/icons";
 import { Menu, Tooltip } from "antd";
 import React from "react";
@@ -30,6 +31,8 @@ import getPermissions from "../../utils/getPermissions";
 import getUserFromToken from "../../utils/getUserFromToken";
 import styles from "./Sidenav.module.css";
 import logo from "../../assets/images/sai-i-lama-logo.png";
+
+const pdfFile = require("./help.pdf");
 
 const Sidenav = ({ color, sideNavOpenKeys }) => {
 	const user = getUserFromToken();
@@ -521,6 +524,15 @@ const Sidenav = ({ color, sideNavOpenKeys }) => {
 					icon: <SettingOutlined />,
 				},
 			],
+		},
+		{
+			label: (
+			  <NavLink to={pdfFile} target="_blank">
+				AIDE
+			  </NavLink>
+			),
+			key: "help",
+			icon: <QuestionCircleOutlined />
 		},
 	];
 

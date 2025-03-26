@@ -80,7 +80,7 @@ function CustomTable({ list, loading }) {
 
     {
       id: 8,
-      title: "Appliqué le",
+      title: "Crée le",
       dataIndex: "createdAt",
       render: (createdAt) => dayjs(createdAt).format("DD-MM-YYYY")
     },
@@ -90,22 +90,22 @@ function CustomTable({ list, loading }) {
       title: "Action",
       key: "action",
       render: ({ id }) => (
-        <UserPrivateComponent permission={"create-leaveApplication"}>
+        
         <ViewBtn
           path={`/admin/leave/${id}`}
           text="View"
           icon={<BtnViewSvg />}
         />
-        </UserPrivateComponent>
+        
       )
     },
 
-    {
-      id: 10,
-      title: "Motif du congé",
-      dataIndex: "reason",
-      key: "reason"
-    }
+    // {
+    //   id: 10,
+    //   title: "Motif du congé",
+    //   dataIndex: "reason",
+    //   key: "reason"
+    // }
 
   ];
 

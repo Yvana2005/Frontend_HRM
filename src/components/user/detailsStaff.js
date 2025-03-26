@@ -38,10 +38,13 @@ import SalaryEditPopup from "../UI/PopUp/SalaryEditPopup";
 import EmployeeSalary from "../UI/EmployeeSalary";
 
 import EmployeeAward from "../UI/EmployeeAward";
-
+import {
+  deletepayroll,
+} from "../../redux/rtk/features/payroll/payrollSlice";
 import AwardHistoryEditPopup from "../UI/PopUp/AwardHistoryEditPopup";
 import UserPrivateComponent from "../PrivateRoutes/UserPrivateComponent";
 import { loadAllDesignation } from "../../redux/rtk/features/designation/designationSlice";
+import PrintUserSheet from "./userPrint";
 
 //PopUp
 
@@ -66,7 +69,7 @@ const DetailStaff = () => {
       );
       if (!confirmDelete) return;
       await dispatch(deleteStaff(id));
-      
+      await dispatch(deletepayroll(id));
       setVisible(false);
       toast.warning(`L'EMPLOYÉ: ${user.firstName} ainsi que sa fiche de paie ont été supprimés. `);
       return navigate("/admin/hr/staffs");
@@ -81,6 +84,7 @@ const DetailStaff = () => {
     setVisible(newVisible);
   };
 
+  
   useEffect(() => {
     dispatch(loadSingleStaff(id));
     return () => {
@@ -172,6 +176,9 @@ const DetailStaff = () => {
                       <button onClick={onDelete}>
                         <BtnDeleteSvg size={30} />
                       </button>
+                    </UserPrivateComponent>
+                    <UserPrivateComponent permission="delete-user">
+                    <PrintUserSheet data={user} />
                     </UserPrivateComponent>
                   </div>
                 </div>

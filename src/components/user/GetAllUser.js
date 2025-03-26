@@ -57,7 +57,7 @@ function CustomTable({ list }) {
     {
       id: 5,
 	  align: "center",
-      title: "Designation",
+      title: "Poste",
       dataIndex: "designationHistory",
       key: "designationHistory",
       render: (record) =>
